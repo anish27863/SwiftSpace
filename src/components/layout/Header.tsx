@@ -2,7 +2,10 @@ import Link from 'next/link';
 import { Search, LogOut, Bell } from 'lucide-react';
 
 
-export function Header() {
+export function Header({ profile }: { profile: any }) {
+  const initial = profile?.full_name 
+    ? profile.full_name[0].toUpperCase() 
+    : (profile?.email ? profile.email[0].toUpperCase() : 'U');
   return (
     <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-[oklch(0.93_0.003_265)] bg-white/80 px-4 md:px-6 glass backdrop-blur-md">
       <div className="flex md:hidden items-center gap-2">
@@ -25,9 +28,11 @@ export function Header() {
         <button className="flex h-10 w-10 items-center justify-center rounded-full border border-[oklch(0.93_0.003_265)] bg-white hover:bg-[oklch(0.97_0.003_265)] text-[oklch(0.40_0.02_265)] transition-colors">
           <Bell className="h-[18px] w-[18px]" />
         </button>
-        <div className="h-10 w-10 rounded-full bg-[oklch(0.93_0.04_280)] flex items-center justify-center text-[oklch(0.42_0.24_285)] font-semibold border border-[oklch(0.87_0.08_280)]">
-          U
-        </div>
+        <Link href="/settings" className="hover:opacity-80 transition-opacity">
+          <div className="h-10 w-10 rounded-full bg-[oklch(0.93_0.04_280)] flex items-center justify-center text-[oklch(0.42_0.24_285)] font-semibold border border-[oklch(0.87_0.08_280)] shadow-sm">
+            {initial}
+          </div>
+        </Link>
       </div>
     </header>
   );

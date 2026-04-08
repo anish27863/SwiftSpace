@@ -23,7 +23,7 @@ const navItems = [
   { href: '/rooms/studio', label: 'Studios', icon: Palette },
 ];
 
-export function Sidebar() {
+export function Sidebar({ profile }: { profile?: any }) {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -81,12 +81,13 @@ export function Sidebar() {
       </div>
 
       <div className="p-4 border-t border-[oklch(0.93_0.003_265)] space-y-1">
-        <button
+        <Link
+          href="/settings"
           className="flex w-full items-center gap-3 rounded-[var(--radius-md)] px-3 py-2 text-sm font-medium text-[oklch(0.40_0.02_265)] transition-colors hover:bg-[oklch(0.97_0.003_265)] hover:text-[oklch(0.16_0.01_265)]"
         >
           <Settings className="h-[18px] w-[18px]" />
           Settings
-        </button>
+        </Link>
         <button
           onClick={handleLogout}
           className="flex w-full items-center gap-3 rounded-[var(--radius-md)] px-3 py-2 text-sm font-medium text-[oklch(0.58_0.22_25)] transition-colors hover:bg-[oklch(0.98_0.03_25)]"
